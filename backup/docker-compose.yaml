@@ -17,9 +17,9 @@ services:
     hostname: minio1
     networks:
       s3-data:
-        ipv4_address: 172.18.0.20
+        ipv4_address: 192.168.123.20
     extra_hosts:
-      - "s3.example.com:172.18.0.20"
+      - "s3.example.com:192.168.123.20"
     ports:
       - 9000:9000
       - 9001:9001
@@ -36,7 +36,7 @@ services:
     networks:
       s3-data:
     extra_hosts:
-      - "s3.example.com:172.18.0.20"
+      - "s3.example.com:192.168.123.20"
     depends_on:
       - minio1
     entrypoint: /bin/sh -c "/usr/bin/mc alias set s3admin https://s3.example.com:9000 MYROOTUSER MYROOTPASSWORD --api S3v4 --insecure;
@@ -55,7 +55,7 @@ services:
     networks:
       - s3-data
     extra_hosts:
-      - "s3.example.com:172.18.0.20"
+      - "s3.example.com:192.168.123.20"
     ports:
       - 1433:1433
     volumes:
@@ -74,4 +74,4 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: "172.18.0.0/24"
+        - subnet: "192.168.123.0/24"
